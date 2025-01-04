@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Raspberry Pi Zero 2W Setup Script
+# Raspberry Pi Zero 2 W Setup Script
 # This script should be run as root or with sudo
 
 # Set up error handling
@@ -8,7 +8,7 @@ set -e
 exec 1> >(tee "setup_log.txt")
 exec 2>&1
 
-echo "Starting Raspberry Pi Zero 2W setup script..."
+echo "Starting Raspberry Pi Zero 2 W setup script..."
 echo "============================================"
 
 # Check if running as root
