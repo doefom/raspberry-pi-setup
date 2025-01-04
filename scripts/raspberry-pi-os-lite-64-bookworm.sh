@@ -6,15 +6,11 @@
 # Set up error handling
 set -e
 
-# Setup logging while keeping stdin available for prompts
-exec 1> >(tee -a "setup_log.txt")
-exec 2> >(tee -a "setup_log.txt" >&2)
-
 # Function to prompt for yes/no questions
 prompt_yes_no() {
     while true; do
-        printf "%s" "$1"
-        read -r response < /dev/tty
+        echo -n "$1"
+        read response
         case $response in
             [Yy]* ) echo "y"; return;;
             [Nn]* ) echo "n"; return;;
@@ -23,7 +19,6 @@ prompt_yes_no() {
     done
 }
 
-clear
 echo "Starting Raspberry Pi OS Lite (64-bit) setup script..."
 echo "============================================"
 
@@ -53,7 +48,11 @@ echo "ll alias: $ENABLE_LL_ALIAS"
 echo ""
 
 echo "Press ENTER to start installation or CTRL+C to cancel"
-read -r < /dev/tty
+read
+
+# Start logging after the prompts
+exec 1> >(tee -a "setup_log.txt")
+exec 2> >(tee -a "setup_log.txt" >&2)
 
 echo "Configuration complete. Starting installation..."
 echo "============================================"
