@@ -1,18 +1,17 @@
 # Raspberry Pi Setup Scripts
 
-This repository contains setup scripts for various Raspberry Pi models. The scripts automate the installation and configuration of essential packages, security settings, and system configurations.
+This repository contains setup scripts for various Raspberry Pi OS versions. The scripts automate the installation and configuration of essential packages, security settings, and system configurations.
 
 ## Available Scripts
 
-### Raspberry Pi Zero 2 W
+### Raspberry Pi OS Lite (64-bit) - Debian Bookworm
 
-Tested on:
-- Raspberry Pi OS Lite (64-bit), Debian Bookworm with no desktop environment (Released: 2024-11-19)
+Compatible with Raspberry Pi 3/4/400/5 and Pi Zero 2 W.
 
-To run the setup script directly on your Raspberry Pi Zero 2 W, use:
+To run the setup script directly on your Raspberry Pi, use:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/doefom/raspberry-pi-setup/refs/heads/main/scripts/raspberry-pi-zero-2-w.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/doefom/raspberry-pi-setup/refs/heads/main/scripts/raspberry-pi-os-lite-64-bookworm.sh | sudo bash
 ```
 
 ## What the scripts do

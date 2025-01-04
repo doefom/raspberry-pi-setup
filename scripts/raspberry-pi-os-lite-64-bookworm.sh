@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Raspberry Pi Zero 2 W Setup Script
+# Raspberry Pi OS Lite (64-bit) Debian Bookworm Setup Script
 # This script should be run as root or with sudo
 
 # Set up error handling
@@ -8,7 +8,7 @@ set -e
 exec 1> >(tee "setup_log.txt")
 exec 2>&1
 
-echo "Starting Raspberry Pi Zero 2 W setup script..."
+echo "Starting Raspberry Pi OS Lite (64-bit) setup script..."
 echo "============================================"
 
 # Check if running as root
@@ -71,4 +71,4 @@ echo "============================================"
 echo "Setup completed successfully!"
 echo "Please reboot your Raspberry Pi to apply all changes."
 echo "You can review the setup log in setup_log.txt"
-echo "============================================"
+echo "============================================" 
