@@ -6,19 +6,6 @@
 # Set up error handling
 set -e
 
-# Function to prompt for yes/no questions
-prompt_yes_no() {
-    while true; do
-        echo -n "$1"
-        read response
-        case $response in
-            [Yy]* ) echo "y"; return;;
-            [Nn]* ) echo "n"; return;;
-            * ) echo "Please answer y or n.";;
-        esac
-    done
-}
-
 echo "Starting Raspberry Pi OS Lite (64-bit) setup script..."
 echo "============================================"
 
@@ -31,13 +18,20 @@ fi
 # Interactive configuration
 echo ""
 echo "Please configure which services you want to enable."
-echo "Type 'y' for yes or 'n' for no and press ENTER after each question."
+echo "Type y for yes or n for no and press ENTER after each question."
 echo ""
 
-ENABLE_UFW=$(prompt_yes_no "Enable UFW firewall? (y/n): ")
-ENABLE_FAIL2BAN=$(prompt_yes_no "Enable fail2ban? (y/n): ")
-ENABLE_SSH=$(prompt_yes_no "Enable SSH server? (y/n): ")
-ENABLE_LL_ALIAS=$(prompt_yes_no "Add ll alias to .bashrc? (y/n): ")
+echo -n "Enable UFW firewall? (y/n): "
+read ENABLE_UFW
+
+echo -n "Enable fail2ban? (y/n): "
+read ENABLE_FAIL2BAN
+
+echo -n "Enable SSH server? (y/n): "
+read ENABLE_SSH
+
+echo -n "Add ll alias to .bashrc? (y/n): "
+read ENABLE_LL_ALIAS
 
 echo ""
 echo "You selected:"
