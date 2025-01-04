@@ -8,6 +8,7 @@ set -e
 exec 1> >(tee "setup_log.txt")
 exec 2>&1
 
+clear
 echo "Starting Raspberry Pi OS Lite (64-bit) setup script..."
 echo "============================================"
 
@@ -18,12 +19,30 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Interactive configuration
-echo "Please configure which services you want to enable:"
+echo ""
+echo "Please configure which services you want to enable."
+echo "Type 'y' for yes or 'n' for no and press ENTER after each question."
+echo ""
 
-read -p "Enable UFW firewall? (y/n): " ENABLE_UFW
-read -p "Enable fail2ban? (y/n): " ENABLE_FAIL2BAN
-read -p "Enable SSH server? (y/n): " ENABLE_SSH
-read -p "Add ll alias to .bashrc? (y/n): " ENABLE_LL_ALIAS
+echo -n "Enable UFW firewall? (y/n): "
+read ENABLE_UFW
+echo -n "Enable fail2ban? (y/n): "
+read ENABLE_FAIL2BAN
+echo -n "Enable SSH server? (y/n): "
+read ENABLE_SSH
+echo -n "Add ll alias to .bashrc? (y/n): "
+read ENABLE_LL_ALIAS
+
+echo ""
+echo "You selected:"
+echo "UFW firewall: $ENABLE_UFW"
+echo "fail2ban: $ENABLE_FAIL2BAN"
+echo "SSH server: $ENABLE_SSH"
+echo "ll alias: $ENABLE_LL_ALIAS"
+echo ""
+
+echo "Press ENTER to start installation or CTRL+C to cancel"
+read
 
 echo "Configuration complete. Starting installation..."
 echo "============================================"
