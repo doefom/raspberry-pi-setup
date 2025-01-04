@@ -60,6 +60,10 @@ systemctl start fail2ban
 echo "Enabling SSH..."
 touch /boot/ssh
 
+# Add ll alias to .bashrc
+echo "Adding ll alias to .bashrc..."
+echo "alias ll='ls -la'" >> ~/.bashrc
+
 # Final system update
 echo "Performing final system update..."
 apt update
