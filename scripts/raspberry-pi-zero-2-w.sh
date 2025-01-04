@@ -17,10 +17,6 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-# Update system time
-echo "Synchronizing system time..."
-timedatectl set-ntp true
-
 # Update and upgrade system
 echo "Updating system packages..."
 apt-get update
@@ -28,7 +24,7 @@ apt-get full-upgrade -y
 
 # Install essential packages
 echo "Installing essential packages..."
-apt install -y \
+apt-get install -y \
     vim \
     git \
     htop \
@@ -66,10 +62,10 @@ echo "alias ll='ls -la'" >> ~/.bashrc
 
 # Final system update
 echo "Performing final system update..."
-apt update
-apt full-upgrade -y
-# apt autoremove -y
-apt clean
+apt-get update
+apt-get full-upgrade -y
+# apt-get autoremove -y
+apt-get clean
 
 echo "============================================"
 echo "Setup completed successfully!"

@@ -6,6 +6,9 @@ This repository contains setup scripts for various Raspberry Pi models. The scri
 
 ### Raspberry Pi Zero 2 W
 
+Tested on:
+- Raspberry Pi OS Lite (64-bit), Debian Bookworm with no desktop environment (Released: 2024-11-19)
+
 To run the setup script directly on your Raspberry Pi Zero 2 W, use:
 
 ```bash
