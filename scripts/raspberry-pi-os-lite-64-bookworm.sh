@@ -5,8 +5,23 @@
 
 # Set up error handling
 set -e
-exec 1> >(tee "setup_log.txt")
-exec 2>&1
+
+# Setup logging while keeping stdin available for prompts
+exec 1> >(tee -a "setup_log.txt")
+exec 2> >(tee -a "setup_log.txt" >&2)
+
+# Function to prompt for yes/no questions
+prompt_yes_no() {
+    while true; do
+        printf "%s" "$1"
+        read -r response < /dev/tty
+        case $response in
+            [Yy]* ) echo "y"; return;;
+            [Nn]* ) echo "n"; return;;
+            * ) echo "Please answer y or n.";;
+        esac
+    done
+}
 
 clear
 echo "Starting Raspberry Pi OS Lite (64-bit) setup script..."
@@ -24,14 +39,10 @@ echo "Please configure which services you want to enable."
 echo "Type 'y' for yes or 'n' for no and press ENTER after each question."
 echo ""
 
-echo -n "Enable UFW firewall? (y/n): "
-read ENABLE_UFW
-echo -n "Enable fail2ban? (y/n): "
-read ENABLE_FAIL2BAN
-echo -n "Enable SSH server? (y/n): "
-read ENABLE_SSH
-echo -n "Add ll alias to .bashrc? (y/n): "
-read ENABLE_LL_ALIAS
+ENABLE_UFW=$(prompt_yes_no "Enable UFW firewall? (y/n): ")
+ENABLE_FAIL2BAN=$(prompt_yes_no "Enable fail2ban? (y/n): ")
+ENABLE_SSH=$(prompt_yes_no "Enable SSH server? (y/n): ")
+ENABLE_LL_ALIAS=$(prompt_yes_no "Add ll alias to .bashrc? (y/n): ")
 
 echo ""
 echo "You selected:"
@@ -42,7 +53,7 @@ echo "ll alias: $ENABLE_LL_ALIAS"
 echo ""
 
 echo "Press ENTER to start installation or CTRL+C to cancel"
-read
+read -r < /dev/tty
 
 echo "Configuration complete. Starting installation..."
 echo "============================================"
